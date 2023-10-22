@@ -62,15 +62,15 @@ const Card = ({ infos }: InfoProps) => {
     AOS.init();
   }, []);
   return (
+    <>
+    
     <CardContainer
-      data-aos="fade-down"
-      data-aos-easing="linear"
-      data-aos-duration="500"
+    
     >
       <ToastContainer 
         position="top-right"
-        autoClose={2000}
-        hideProgressBar={false}
+        autoClose={100}
+        hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
         rtl={false}
@@ -79,6 +79,7 @@ const Card = ({ infos }: InfoProps) => {
         draggable
         pauseOnHover
         theme="dark"/>
+      
       <CardContent>
         <img src={image} alt="" />
         <div>{tags?.map((tag, index) => <Tag key={index}>{tag}</Tag>)}</div>
@@ -111,7 +112,10 @@ const Card = ({ infos }: InfoProps) => {
           </CartButton>
         </PriceContainer>
       </CardContent>
+      
     </CardContainer>
+    
+    </>
   );
 };
 
