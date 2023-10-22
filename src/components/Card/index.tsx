@@ -1,6 +1,9 @@
 /* eslint-disable prettier/prettier */
 import { useEffect, useContext, useState } from "react";
 import { Minus, Plus, ShoppingCartSimple } from "@phosphor-icons/react";
+import { Flip, ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 import {
   CardContainer,
   CardContent,
@@ -34,6 +37,8 @@ const Card = ({ infos }: InfoProps) => {
   const [quantity, setQuantity] = useState(1);
   const { addItemCard } = useContext(CartContext);
 
+  const notify = () => toast("🛒Item adicionado ao carrinho");
+
   function addQuantity() {
     setQuantity((state) => state + 1);
   }
@@ -48,6 +53,11 @@ const Card = ({ infos }: InfoProps) => {
     addItemCard(infos);
   }
 
+  function handleClick() {
+    handleAddCart()
+    notify()
+  }
+
   useEffect(() => {
     AOS.init();
   }, []);
@@ -57,6 +67,18 @@ const Card = ({ infos }: InfoProps) => {
       data-aos-easing="linear"
       data-aos-duration="500"
     >
+      <ToastContainer 
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        transition={Flip}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"/>
       <CardContent>
         <img src={image} alt="" />
         <div>{tags?.map((tag, index) => <Tag key={index}>{tag}</Tag>)}</div>
@@ -84,7 +106,7 @@ const Card = ({ infos }: InfoProps) => {
               <Plus weight="bold" size={14} onClick={() => addQuantity()} />
             </button>
           </InputContainer>
-          <CartButton onClick={handleAddCart}>
+          <CartButton onClick={handleClick}>
             <ShoppingCartSimple size={22} weight="fill" />
           </CartButton>
         </PriceContainer>

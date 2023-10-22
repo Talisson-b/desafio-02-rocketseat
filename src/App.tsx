@@ -6,6 +6,8 @@ import { GlobalStyles } from './styles/globalStyles'
 import CartProvider from './context/CartContext'
 import FormProvider from './context/FormContext'
 
+import 'react-toastify/dist/ReactToastify.css'
+
 function App() {
   return (
     <ThemeProvider theme={defaultTheme}>
